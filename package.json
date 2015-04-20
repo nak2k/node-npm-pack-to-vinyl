@@ -1,0 +1,25 @@
+{
+  "name": "npm-pack-to-vinyl",
+  "version": "0.0.1",
+  "description": "`npm pack` and create a vinyl object for a tarball",
+  "author": "Kengo Nakatsuka <kengo.nakatsuka@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/nak2k/node-npm-pack-to-vinyl/issues"
+  },
+  "dependencies": {
+    "vinyl": "^0.4.6"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/nak2k/node-npm-pack-to-vinyl",
+  "keywords": [
+    "npm",
+    "vinyl"
+  ],
+  "license": "MIT",
+  "main": "packToVinyl",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nak2k/node-npm-pack-to-vinyl.git"
+  },
+  "scripts": {}
+}
