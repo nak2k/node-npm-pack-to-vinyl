@@ -1,33 +1,32 @@
-var dirname = require('path').dirname;
-var npm = require('npm');
-var fs = require('fs');
-var File = require('vinyl');
+const dirname = require('path').dirname;
+const File = require('vinyl');
+const pack = require('tar-pack').pack
+const FN = require('fstream-npm');
 
 module.exports = packToVinyl;
 
 function packToVinyl(pkgName, callback) {
-  var pkgJsonFile = require.resolve(pkgName + '/package');
-  var pkgDir = dirname(pkgJsonFile);
-  var package = require(pkgJsonFile);
+  var pkgJsonFile;
+  try {
+    pkgJsonFile = require.resolve(pkgName + '/package');
+  } catch(e) {
+    return callback(e);
+  }
 
-  npm.load(package, function(err, conf) {
-    if (err) {
-      return callback(err);
-    }
+  const pkgDir = dirname(pkgJsonFile);
+  const package = require(pkgJsonFile);
 
-    npm.commands.pack([pkgDir], true, function(err, files) {
-      if (err) {
-        return callback(err);
-      }
+  var name = package.name
+  if (name[0] === '@') {
+    name = name.substr(1).replace(/\//g, '-');
+  }
 
-      var path = process.cwd() + '/' + files[0];
+  const fname = name + '-' + package.version + '.tgz';
 
-      var file = new File({
-        path: path,
-        contents: fs.createReadStream(path),
-      });
-
-      callback(null, file);
-    });
+  const file = new File({
+    path: pkgDir + '/' + fname,
+    contents: pack(FN(pkgDir)),
   });
+
+  callback(null, file);
 }
