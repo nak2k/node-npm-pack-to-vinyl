@@ -9,7 +9,9 @@
   "dependencies": {
     "vinyl": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^4.4.0"
+  },
   "homepage": "https://github.com/nak2k/node-npm-pack-to-vinyl",
   "keywords": [
     "npm",
@@ -21,5 +23,7 @@
     "type": "git",
     "url": "https://github.com/nak2k/node-npm-pack-to-vinyl.git"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "tape test/*.js"
+  }
 }
