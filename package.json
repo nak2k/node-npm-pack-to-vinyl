@@ -7,7 +7,7 @@
     "url": "https://github.com/nak2k/node-npm-pack-to-vinyl/issues"
   },
   "dependencies": {
-    "vinyl": "^0.5.0"
+    "vinyl": "^1.1.0"
   },
   "devDependencies": {},
   "homepage": "https://github.com/nak2k/node-npm-pack-to-vinyl",
