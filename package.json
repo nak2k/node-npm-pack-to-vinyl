@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "fstream-npm": "^1.2.0",
-    "tar-pack": "^3.1.4",
+    "tar-pack": "^3.3.0",
     "vinyl": "^1.2.0"
   },
   "devDependencies": {
