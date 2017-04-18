@@ -9,7 +9,7 @@
   "dependencies": {
     "fstream-npm": "^1.2.0",
     "tar-pack": "^3.1.4",
-    "vinyl": "^1.2.0"
+    "vinyl": "^2.0.2"
   },
   "devDependencies": {
     "tape": "^4.6.0"
