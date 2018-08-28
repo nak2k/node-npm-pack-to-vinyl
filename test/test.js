@@ -5,12 +5,12 @@ const write = require('fs').createWriteStream;
 test('test', function (t) {
   t.plan(1);
 
-  packToVinyl('npm-pack-to-vinyl', (err, file) => {
+  packToVinyl(__dirname + '/..', (err, file) => {
     if (err) {
       return t.end(err);
     }
 
-    file
+    file.contents
       .pipe(write(__dirname + '/' + file.relative))
       .on('close', () => t.ok(true));
   });
