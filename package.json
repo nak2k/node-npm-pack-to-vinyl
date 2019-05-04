@@ -7,8 +7,8 @@
     "url": "https://github.com/nak2k/node-npm-pack-to-vinyl/issues"
   },
   "dependencies": {
-    "fstream-npm": "^1.2.1",
-    "tar-pack": "^3.4.1",
+    "npm-packlist": "^1.4.1",
+    "tar": "^4.4.8",
     "vinyl": "^2.2.0"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "url": "https://github.com/nak2k/node-npm-pack-to-vinyl.git"
   },
   "scripts": {
+    "pretest": "rm test/*.tgz",
     "test": "tape test/*.js"
   }
 }

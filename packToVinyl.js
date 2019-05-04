@@ -1,7 +1,8 @@
 const { dirname } = require('path');
 const File = require('vinyl');
-const { pack } = require('tar-pack');
-const FN = require('fstream-npm');
+const packlist = require('npm-packlist');
+const tar = require('tar');
+const { Transform } = require('stream');
 
 module.exports = packToVinyl;
 
@@ -21,10 +22,22 @@ function packToVinyl(pkgName, callback) {
     name = name.substr(1).replace(/\//g, '-');
   }
 
-  const file = new File({
-    path: `${pkgDir}/${name}-${version}.tgz`,
-    contents: pack(FN(pkgDir)),
-  });
+  packlist({ path: pkgDir })
+    .then(files => {
+      const contents = tar.create({
+        prefix: 'package/',
+        cwd: pkgDir,
+        gzip: true
+      }, files).pipe(new Transform({
+        transform: (chunk, encoding, callback) => callback(null, chunk),
+      }));
 
-  callback(null, file);
+      const file = new File({
+        path: `${pkgDir}/${name}-${version}.tgz`,
+        contents,
+      });
+
+      callback(null, file);
+    })
+    .catch(err => callback(err));
 }
